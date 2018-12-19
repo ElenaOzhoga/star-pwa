@@ -1,0 +1,17 @@
+{
+  "name": "Star PWA",
+  "short_name": "sw",
+  "icons": [{
+    "src": "images/ico-app-192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "/images/icon-app-512.png",
+    "type": "image/png",
+    "sizes": "512x512"
+  }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000",
+  "theme_color": "#000"
+}

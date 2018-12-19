@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000">
+    <meta name="description" content="This is an application which shows star wars heroes personal details.">
+    <title>Star Wars</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <script type="text/javascript" src="js/eventTrackerLibrary.js"></script>
+    <link rel="icon" sizes="192x192" href="/images/ico-app-192.png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<div id="app" :class="{'layout-1': switchLayoutMessage === 'Go to the dark side!'}">
+    <div class="btn-section">
+        <!--For SEO logo is in h1 - browser search will find content this content faster-->
+        <!--Also for web accessability text from logo image is written in words-->
+        <h1 class="logo"><a href="#">{{logoText}}</a></h1>
+        <!--This button allows to switch layout-->
+        <input type="button" :value="switchLayoutMessage" v-on:click="switchLayout()"
+               class="btn btn-secondary layout-switcher">
+    </div>
+    <!--While we are waiting for Star Wars API loading, we need some image indicator. Words are written for web
+    accessability-->
+    <div class="loading">Loading...</div>
+    <!--Content is partly scrollable on mobile devices-->
+    <div class="scroll-content">
+        <!--Heroes list-->
+        <ul class="categories-list">
+            <li v-for="category in categories">{{category.name}}
+                <!--This button allows to access details from heroes list-->
+                <input type="button" value="Details" v-on:click="openCategoryDetails(category)" class="btn btn-primary">
+                <!--Heroes details-->
+                <div class="popup" v-if="category.name === currentCategory">
+                    <div class="popup-content">
+                        <input type="button" value="Close" v-on:click="closeCategoryDetails()" class="btn btn-primary">
+                        <!--Content is partly scrollable on mobile devices-->
+                        <div class="scroll-content">
+                            <table class="table">
+                                <tr v-for="(value, key) in category">
+                                    <td>
+                                        <strong>{{ key }}</strong>
+                                    </td>
+                                    <td>
+                                        {{ value }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/offline.js"></script>
+</body>
+</html>
